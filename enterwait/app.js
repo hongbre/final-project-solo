@@ -13,6 +13,9 @@ app.use('/admin/init', require('./route/admin/init'));
 app.use('/enterwait/request', require('./route/enterwait/request'));
 app.use('/enterwait/cancel', require('./route/enterwait/cancel'));
 
+app.use('/request/accept', require('./route/request/accept'));
+app.use('/request/reject', require('./route/request/reject'));
+
 app.listen(port, () => {
   console.log(`Enterwait Request System listening on port ${port}...`);
 });
