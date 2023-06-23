@@ -114,7 +114,7 @@ const cNursery = () => `
       \`nursery_id\`
     )
   );
-`);
+`;
 
 const cChild = () => `
   CREATE TABLE \`child\` (

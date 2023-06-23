@@ -8,7 +8,7 @@ app.get('/', (req, res) => {
 
 app.use(express.json());
 
-app.use('/admin/init', 'require('./route/admin/init'));
+app.use('/admin/init', require('./route/admin/init'));
 
 app.use('/enterwait/request', require('./route/enterwait/request'));
 app.use('/enterwait/cancel', require('./route/enterwait/cancel'));
