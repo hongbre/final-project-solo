@@ -1,7 +1,5 @@
 const { SQSClient, SendMessageCommand } = require('@aws-sdk/client-sqs');
 
-require('dotenv').config();
-
 const sqsClient = new SQSClient({
   region: process.env.REGION,
   credentials: {
