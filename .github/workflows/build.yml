@@ -1,8 +1,10 @@
-name: Build Enterwait System / dev
+name: Build Enterwait System
 
 on:
   push:
     branches:
+      - main
+      - stg
       - dev
     paths:
       - 'enterwait/**'
@@ -21,16 +23,6 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v3
 
-      - name: Set-up node version
-        uses: actions/setup-node@v3
-        with:
-          node-verison: 18
-
-      - name: npm ci
-        run: |
-          cd enterwait
-          npm ci
-
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -44,7 +36,7 @@ jobs:
       - name: Build, tag, and push docker image to Amazon ECR
         env:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          REPOSITORY: enterwait-dev
+          REPOSITORY: enterwait-${{ github.ref_name }}
           IMAGE_TAG: ${{ github.sha }}
         run: |
           cd enterwait
