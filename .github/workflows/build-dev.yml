@@ -1,0 +1,38 @@
+name: Build Enterwait System / dev
+
+on:
+  push:
+    branches:
+      - dev
+    paths:
+      - 'enterwait/**'
+
+env:
+  AWS_REGION: ap-northeast-2
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+
+      - name: Set-up node version
+        uses: actions/setup-node@v3
+        with:
+          node-verison: 18
+
+      - name: npm ci
+        run: |
+          npm ci
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: arn:aws:iam::159960117927:role/github-actions-aws-credentials
+          aws-region: ${{ env.AWS_REGION }}
+
