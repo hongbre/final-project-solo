@@ -37,3 +37,7 @@ jobs:
           role-to-assume: arn:aws:iam::159960117927:role/github-actions-aws-credentials
           aws-region: ${{ env.AWS_REGION }}
 
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
