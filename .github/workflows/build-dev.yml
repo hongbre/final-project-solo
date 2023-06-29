@@ -28,6 +28,7 @@ jobs:
 
       - name: npm ci
         run: |
+          cd enterwait
           npm ci
 
       - name: Configure AWS credentials
